@@ -1,0 +1,21 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Request Detail</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Service Request Detail</h1>
+    <p><strong>Type:</strong> {{ service_request.service_type }}</p>
+    <p><strong>Description:</strong> {{ service_request.description }}</p>
+    <p><strong>Submitted At:</strong> {{ service_request.created_at }}</p>
+    <p><strong>Status:</strong> {{ service_request.status|yesno:"Resolved,Pending" }}</p>
+    {% if service_request.attachment %}
+        <p><strong>Attachment:</strong> <a href="{{ service_request.attachment.url }}">Download</a></p>
+    {% endif %}
+    <a href="{% url 'request_list' %}">Back to My Requests</a>
+</body>
+</html>
